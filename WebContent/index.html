@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sneeze</title>
+        <meta name="author" content="Anthony Zheng, Jalen Boutte, Zachary Phan, Robin Guice">
+        <meta name="description" content="Insignificance at it's finest">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.transform2d.js"></script>
+        <script src="js/script.js" type="text/javascript"></script>
+    </head>
+    <body data-spy="scroll" data-target="#aboutlinks" data-offset="30">
+        <div class="container-fluid text-center" id="homebg">
+            <!-- The main screen -->
+            <div class="row links">
+                <div class="col-xs-6 text-left">
+                    <a class="topNav" id="homeButton">Home</a>
+                    <a class="topNav" id="aboutButton">About</a>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <a class="topNav" data-toggle="modal" data-target="#login">Login</a>
+                </div>
+            </div>
+            <div class="text-center logo">
+                <h1>Sneeze</h1>
+                <p>Ackowledging the things taken for granted</p>
+            </div>
+
+            <!-- Log In Form -->
+            <div id="login" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Log In</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <form class="form-horizontal" action="DataProcess">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="user">Username:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" id="user" name="user" placeholder="Enter your Username">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="pass">Password:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="pass" name="pass" placeholder="Enter the password">
+                                            </div>
+                                            <div class="col-sm-2 text-right">
+                                                <input type="submit" class="btn btn-default" value="Sign in">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-3 col-sm-3 col text-left">
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" name="rem" value="true"> Remember me</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a>Forgot password?</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- modal (log in form) end -->
+        </div>
+        <div class="container-fluid" id="aboutSection">
+            <div class="row">
+                <nav class="col-sm-2 text-center" id="aboutlinks">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#aboutSneeze">Sneeze</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Team <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#anthony">Anthony Zheng</a></li>
+                                <li><a href="#jalen">Jalen Boutte</a></li>
+                                <li><a href="#zachary">Zachary Phan</a></li>
+                                <li><a href="#robin">Robin Guice</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#aboutContact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="col-sm-10 pull-right" id="aboutContent">
+                    <div class="row">
+                        <div class="col-xs-12 aboutPart text-center" id="aboutSneeze">
+                            <div class="vertical-center text-left">
+                                <p>
+                                <span class="hilite">Sneeze</span> helps you vent about the more
+                                insignificant things in life.
+                                <br><br>
+                                Say it, get it off your chest. What did you have for breakfast?
+                                Are you trying to divorce your wife? Tell us anything.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 bio text-center" id="anthony">
+                            <div class="vertical-center">
+                                <h2>Anthony Zheng</h2>
+                                <p>I want to go home.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 bio text-center" id="jalen">
+                            <div class="vertical-center">
+                                <h2>Jalen Boutte</h2>
+                                <p>I want to go home.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 bio text-center" id="zachary">
+                            <div class="vertical-center">
+                                <h2>Zachary Phan</h2>
+                                <p>I want to go home.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 bio text-center" id="robin">
+                            <div class="vertical-center">
+                                <h2>Robin Guice</h2>
+                                <p>I want to go home.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 aboutPart text-center" id="aboutContact">
+                            <div class="vertical-center">
+                                <h2>Contact Us</h2>
+                                <p>
+                                123 Fake Street &middot; Atlanta, GA 30012
+                                <br>
+                                (123) 456-7899 &middot; admin@sneeze.cat
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End About -->
+    </body>
+</html>

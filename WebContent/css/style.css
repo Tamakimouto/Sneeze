@@ -1,0 +1,127 @@
+/**
+ * Style.css
+ *
+ * Put main css here.
+ *
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch);
+@import url(https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister);
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
+* {
+    transition: all 0.5s;
+    font-family: 'Poiret One', cursive;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#homebg {
+    height: 100vh;
+    background: url("../img/bg0.jpg") center/cover fixed;
+}
+
+h1 {
+    font-size: 3.5em;
+    font-family: 'Cabin Sketch', cursive;
+    color: white;
+}
+
+p {
+    color: white;
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+
+h3 {
+    font-family: 'Poiret One', cursive;
+}
+
+.links {
+    position: fixed;
+    width: 100vw;
+    z-index: 9001; /* <--- IT'S OVER 9000!! ...sorry */
+}
+
+.links a,
+.links span {
+    text-decoration: none;
+    color: white;
+    font-family: 'Poiret One', cursive;
+    font-size: 1.2em;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    border-bottom: solid pink;
+    border-width: 0;
+}
+
+.links a:hover {
+    cursor: pointer;
+    border-width: 1px;
+}
+
+.form-horizontal .checkbox {
+    padding-top: 0px;
+}
+
+.logo {
+    background: url("../img/bg1.jpg") center/cover fixed;
+    border: 5px white solid;
+    top: 20vh;
+    width: 0vw;
+    height: 0vh;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.modal p {
+    color: black;
+}
+
+#aboutSection,
+.aboutPart {
+    height: 100vh;
+}
+
+#aboutSection h2 {
+    font-size: 3em;
+}
+
+#aboutSection p {
+    font-family: 'Poiret One', cursive;
+    font-size: 1.8em;
+}
+
+.hilite {
+    font-size: 2em;
+    color: pink;
+}
+
+#aboutSection p {
+    color: black;
+}
+
+.bio {
+    height: 50vh;
+}
+
+#aboutlinks {
+    top: 10vh;
+}
+
+.vertical-center {
+    top: 50%;
+    transform: translate(0, -70%);
+    position: relative;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.affix {
+    top: 10vh;
+    z-index: 10;
+}
