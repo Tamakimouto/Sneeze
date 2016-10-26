@@ -106,16 +106,36 @@ h3 {
 }
 
 .bio {
-    height: 50vh;
+    height: 100vh;
 }
 
 #aboutlinks {
     top: 10vh;
 }
 
+#aboutSneeze{
+    background: url("../img/sneeze1.jpg") right bottom/25% no-repeat fixed;
+}
+
+#anthony {
+    background: url("../img/sneeze2.jpg") right bottom/25% no-repeat fixed;
+}
+
+#jalen {
+    background: url("../img/sneeze3.jpg") right bottom/25% no-repeat fixed;
+}
+
+#zachary {
+    background: url("../img/sneeze4.jpg") right bottom/25% no-repeat fixed;
+}
+
+#robin {
+    background: url("../img/sneeze5.jpg") right bottom/25% no-repeat fixed;
+}
+
 .vertical-center {
     top: 50%;
-    transform: translate(0, -70%);
+    transform: translate(-10%, -70%);
     position: relative;
     padding-left: 25%;
     padding-right: 25%;
@@ -124,4 +144,14 @@ h3 {
 .affix {
     top: 10vh;
     z-index: 10;
+}
+
+@media screen and (max-width: 600px) {
+    #aboutSneeze,
+    #anthony,
+    #jalen,
+    #zachary,
+    #robin {
+        background-image: none;
+    }
 }
