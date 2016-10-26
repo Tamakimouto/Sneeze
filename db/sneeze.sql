@@ -26,6 +26,7 @@ CREATE TABLE `messages` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `user` varchar(32) NOT NULL,
   `msg` varchar(100) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -73,4 +74,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-25 16:22:21
+-- Dump completed on 2016-10-25 20:45:18
