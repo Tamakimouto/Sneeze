@@ -109,6 +109,11 @@ h3 {
     height: 100vh;
 }
 
+.bio img {
+    width: 25%;
+    height: auto;
+}
+
 #aboutlinks {
     top: 10vh;
 }
