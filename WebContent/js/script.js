@@ -2,7 +2,11 @@ $(window).on("load", function(){
     $(".logo")
         .animate({opacity: "1"}, "fast")
         .animate({width: "40vw"}, "slow")
-        .animate({height: "50vh"}, "slow");
+        .animate({height: "50vh"}, "slow", function() {
+            $(".logo-img")
+                .animate({transform: "translate(0, 0)"}, "slow")
+                .addClass("is-flying");
+        });
 });
 
 /* Doc Ready */
