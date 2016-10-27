@@ -1,2 +1,2 @@
 # Sneeze
-Ackowledging those insignificant things.
+Acknowledging those insignificant things.
