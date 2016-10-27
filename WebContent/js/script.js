@@ -1,4 +1,4 @@
-$(window).on("load", function(){
+$(window).on("load", function() {
     $(".logo")
         .animate({opacity: "1"}, "fast")
         .animate({width: "40vw"}, "slow")

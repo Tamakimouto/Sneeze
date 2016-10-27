@@ -157,6 +157,10 @@ h3 {
     background: url("../img/sneeze5.jpg") right bottom/25% no-repeat fixed;
 }
 
+#aboutContact {
+    background: url("../img/sneezeLogo2.jpg") right bottom/120px no-repeat;
+}
+
 .vertical-center {
     top: 50%;
     transform: translate(-10%, -70%);
