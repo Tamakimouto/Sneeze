@@ -151,6 +151,32 @@ h3 {
     z-index: 10;
 }
 
+.passform {
+    width: 50vw;
+    top: 30vh;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+}
+
+.passform:hover {
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.passform > p {
+    color: black;
+    font-family: 'Poiret One', cursive;
+    font-size: 1.2em;
+    text-align: justify;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.passform > form {
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 600px) {
     #aboutSneeze,
     #anthony,

@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DataProcess
+ * Servlet implementation class Access
  */
-@WebServlet("/DataProcess")
-public class DataProcess extends HttpServlet {
+@WebServlet("/Access")
+public class Access extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DataProcess() {
+    public Access() {
         super();
         // TODO Auto-generated constructor stub
     }
