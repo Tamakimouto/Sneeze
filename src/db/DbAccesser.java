@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbAccesser extends DbSettings {
-	
-	public DbAccesser(){}
-	
-	public Connection connect() {
+
+    public DbAccesser(){}
+
+    public Connection connect() {
         Connection con = null;
         try {
             Class.forName(DB_DRIVE_NAME);
@@ -22,17 +22,17 @@ public class DbAccesser extends DbSettings {
         }
         return con;
     }
-	
-	public void disconnect(Connection con) {
+
+    public void disconnect(Connection con) {
         try {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-	
-	/* For getting things */
-	public ResultSet retrieve(Connection con, String query) {
+
+    /* For getting things */
+    public ResultSet retrieve(Connection con, String query) {
         ResultSet rset = null;
         try {
             Statement stmt = con.createStatement();
@@ -43,9 +43,9 @@ public class DbAccesser extends DbSettings {
             return rset;
         }
     }
-	
-	/* For Creating, Updating, and Deleting things */
-	public int update(Connection con, String query) {
+
+    /* For Creating, Updating, and Deleting things */
+    public int update(Connection con, String query) {
         int numUpdates = 0;
         try {
             Statement st = con.createStatement();
