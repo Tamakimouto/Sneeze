@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import db.DbLogic;
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
@@ -74,15 +75,44 @@ public class Access extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+        //response.getWriter();
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
+    	
+    	String type = request.getParameter("form");		//sign-in or sign-up
+    	
+    	String user = request.getParameter("user");
+    	String password = request.getParameter("pass");
+    	String email = "";
+    	
+    	if(type.equals("sign-in")){
+    		
+    		if(DbLogic.validateCredentials(user, password)){
+    			response.getWriter().append("Validated login: " + user);
+    			//TODO: loadsneezes()
+    		}else{
+    			response.getWriter().append("Login failed Validation: " + user);
+    			//TODO: handle error validating credentials
+    		}
+    		
+    	}else if(type.equals("sign-up")){
+    		
+    		email = request.getParameter("mail");
+    		
+    		if(DbLogic.createUser(user, password, email)){
+    			//TODO: loadsneezes();	
+    			response.getWriter().append("Added New User: " + user);
+    		}else{
+    			response.getWriter().append("Failed to add user: " + user);
+    			//TODO: handle error creating new user
+    		}
+    			
+    	}
+    	
     }
 
 }
