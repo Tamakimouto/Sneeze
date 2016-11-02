@@ -31,7 +31,7 @@ $(function () {
 
     $(window).on("scroll", function(e) {
         var pos = $(this).scrollTop();
-        var screen = $(window).height();
+        var screen = $(this).height();
 
         if (pos >= screen)
             $(".topNav").css("color", "#337AB7");
