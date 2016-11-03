@@ -8,7 +8,6 @@
 @import url(https://fonts.googleapis.com/css?family=Cabin+Sketch);
 @import url(https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister);
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
-@import url(https://fonts.googleapis.com/css?family=Quicksand);
 
 @keyframes flying {
     0% {
@@ -219,7 +218,6 @@ h3 {
 
 dl {
     margin-top: 20px;
-    margin-left: 5vw;
 }
 
 .copyright {
@@ -229,82 +227,6 @@ dl {
 .copyright > div {
     padding-top: 1vh;
     padding-bottom: 1vh;
-}
-
-.dev-splash {
-    min-height: 50vh;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url("../img/devsplash.jpg") center/cover;
-    margin: 0;
-    padding: 0;
-}
-
-.splash-head-container {
-    position: relative;
-    top: 10vh;
-}
-
-.dev-splash * {
-    font-family: 'Quicksand', sans-serif;
-}
-
-.dev-splash h1 {
-    font-size: 3.5em;
-}
-
-.dev-splash p {
-    font-size: 2em;
-}
-
-th {
-    text-align: center;
-}
-
-.db-img {
-    min-height: 100vh;
-    margin-bottom: 30px;
-    padding-top: 10vh;
-}
-
-.tech-sec,
-.details {
-    min-height: 100vh;
-    padding-top: 10vh;
-}
-
-.tech-sec *,
-.details *,
-.partition *,
-.db-img * {
-    color: black;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.partition {
-    margin-top: 10vh;
-}
-
-.tech-head {
-    margin-bottom: 20px;
-}
-
-.tech {
-    min-height: 25vh;
-    margin-bottom: 20px;
-}
-
-.tech h4 {
-    opacity: 0;
-}
-
-.tech:hover h4 {
-    opacity: 1;
-}
-
-.tech img {
-    max-height: 25vh;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 @media screen and (max-width: 700px) {
