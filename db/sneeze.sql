@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `messages`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `messages` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
-  `user` varchar(32) NOT NULL,
+  `user_id` int(6) DEFAULT NULL,
   `msg` varchar(100) DEFAULT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -74,4 +74,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-25 20:45:18
+-- Dump completed on 2016-10-31 20:06:40
