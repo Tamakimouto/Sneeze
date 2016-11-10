@@ -1,15 +1,36 @@
 function enableAccess() {
-    var rdy = true;
+    var rdySignIn = true;
+
     $(".signInField").each(function() {
         if (!$(this).val())
-            rdy = false;
+            rdySignIn = false;
     });
-    if (rdy) {
-        $("#signInButton").removeClass("disabled");
-        $("#signInButton").prop("disabled", false);
+
+    var signIn = $("#signInButton");
+    if (rdySignIn) {
+        signIn.removeClass("disabled");
+        signIn.prop("disabled", false);
     } else {
-        $("#signInButton").addClass("disabled");
-        $("#signInButton").prop("disabled", true);
+        signIn.addClass("disabled");
+        signIn.prop("disabled", true);
+    }
+}
+
+function enableRegister() {
+    var rdySignUp = true;
+
+    $(".signUpField").each(function() {
+        if (!$(this).val())
+            rdySignUp = false;
+    });
+
+    var signUp = $("#signUpButton");
+    if (rdySignUp) {
+        signUp.removeClass("disabled");
+        signUp.prop("disabled", false);
+    } else {
+        signUp.addClass("disabled");
+        signUp.prop("disabled", true);
     }
 }
 
@@ -23,6 +44,7 @@ $(window).on("load", function() {
                 .addClass("is-flying");
         });
     enableAccess();
+    enableRegister();
 });
 
 /* Doc Ready */
@@ -56,4 +78,5 @@ $(function () {
     });
 
     $(".signInField").on("input", enableAccess);
+    $(".signUpField").on("input", enableRegister);
 });
