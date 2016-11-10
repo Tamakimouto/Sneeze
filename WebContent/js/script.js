@@ -1,3 +1,18 @@
+function enableAccess() {
+    var rdy = true;
+    $(".signInField").each(function() {
+        if (!$(this).val())
+            rdy = false;
+    });
+    if (rdy) {
+        $("#signInButton").removeClass("disabled");
+        $("#signInButton").prop("disabled", false);
+    } else {
+        $("#signInButton").addClass("disabled");
+        $("#signInButton").prop("disabled", true);
+    }
+}
+
 $(window).on("load", function() {
     $(".logo")
         .animate({opacity: "1"}, "fast")
@@ -38,4 +53,6 @@ $(function () {
         else
             $(".topNav").css("color", "white");
     });
+
+    $(".signInField").on("input", enableAccess);
 });
