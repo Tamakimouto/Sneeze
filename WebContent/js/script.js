@@ -22,6 +22,7 @@ $(window).on("load", function() {
                 .animate({transform: "translate(0, 0)"}, "slow")
                 .addClass("is-flying");
         });
+    enableAccess();
 });
 
 /* Doc Ready */
