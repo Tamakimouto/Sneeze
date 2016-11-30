@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sneeze</title>
-        <meta name="author" content="Anthony Zheng, Jalen Boutte, Zachary Phan, Robin Guice">
+        <meta name="author" content="Anthony Zheng, Zachary Phan, Robin Guice">
         <meta name="description" content="Insignificance at it's finest">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -16,6 +16,15 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>IN DEVELOPMENT</h1>
+        <div class="container">
+            <div class="row">
+                <#list sneezes as sneeze>
+                <div class="col-sm-3">
+                    <p>${sneeze.text}</p>
+                    <p>${sneeze.user}</p>
+                </div>
+                </#list>
+            </div>
+        </div>
     </body>
 </html>
