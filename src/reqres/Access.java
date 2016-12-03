@@ -90,19 +90,22 @@ public class Access extends HttpServlet {
         if (type.equals("sign-in")) {
             if (DbLogic.validateCredentials(user, password)) {
                 response.getWriter().append("Validated login: " + user);
-                //TODO: loadsneezes()
+                Cookie userCookie = new Cookie("sneezeUser", user);
+                userCookie.setMaxAge(60*60*24*365);
+                response.addCookie(userCookie);
+                // loadsneezes()
             } else {
                 response.getWriter().append("Login failed Validation: " + user);
-                //TODO: handle error validating credentials
+                // handle error validating credentials
             }
         } else if (type.equals("sign-up")) {
             String email = request.getParameter("mail");
             if (DbLogic.createUser(user, password, email)) {
-                //TODO: loadsneezes();
+                // loadsneezes();
                 response.getWriter().append("Added New User: " + user);
             } else {
                 response.getWriter().append("Failed to add user: " + user);
-                //TODO: handle error creating new user
+                // handle error creating new user
             }
         }
     }
