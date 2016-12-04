@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sneeze</title>
-        <meta name="author" content="Anthony Zheng, Jalen Boutte, Zachary Phan, Robin Guice">
+        <meta name="author" content="Anthony Zheng, Zachary Phan, Robin Guice">
         <meta name="description" content="Insignificance at it's finest">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -16,6 +16,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.transform2d.js"></script>
         <script src="js/script.js" type="text/javascript"></script>
+        <script src="js/loadCookie.js" type="text/javascript"></script>
     </head>
     <body data-spy="scroll" data-target="#aboutlinks" data-offset="30">
         <div class="container-fluid text-center" id="homebg">
@@ -50,17 +51,17 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="user">Username:</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="user" name="user" placeholder="Enter your Username">
+                                                <input type="text" class="form-control signInField" id="user" name="user" placeholder="Enter your Username">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-3" for="pass">Password:</label>
                                             <div class="col-sm-4">
-                                                <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter the password">
+                                                <input type="password" class="form-control signInField" id="pass" name="pass" placeholder="Enter the password">
                                             </div>
                                             <div class="col-sm-2 text-right">
                                                 <input type="hidden" name="form" value="sign-in">
-                                                <input type="submit" class="btn btn-default" value="Sign in">
+                                                <input type="submit" class="btn btn-default disabled" id="signInButton" value="Sign in">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -83,21 +84,21 @@
                                     <form class="form-horizontal" action="Access" method="post">
                                         <div class="form-group">
                                             <div class="col-sm-offset-3 col-sm-3">
-                                                <input type="text" class="form-control" id="user" name="user" placeholder="Username">
+                                                <input type="text" class="form-control signUpField" id="user" name="user" placeholder="Username">
                                             </div>
                                             <div class="col-sm-3">
-                                                <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+                                                <input type="password" class="form-control signUpField" id="pass" name="pass" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-3 col-sm-6">
-                                                <input type="email" class="form-control" id="mail" name="mail" placeholder="E-Mail Address">
+                                                <input type="email" class="form-control signUpField" id="mail" name="mail" placeholder="E-Mail Address">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-sm-offset-3 col-sm-6 text-center">
                                                 <input type="hidden" name="form" value="sign-up">
-                                                <input type="submit" class="btn btn-default" value="Sign Up">
+                                                <input type="submit" class="btn btn-default disabled" id="signUpButton" value="Sign Up">
                                             </div>
                                         </div>
                                     </form>
@@ -117,7 +118,6 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Team <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#anthony">Anthony Zheng</a></li>
-                                <li><a href="#jalen">Jalen Boutte</a></li>
                                 <li><a href="#zachary">Zachary Phan</a></li>
                                 <li><a href="#robin">Robin Guice</a></li>
                             </ul>
@@ -145,14 +145,6 @@
                                 <img class="img-rounded" src="img/anthony.jpg" alt="Anthony">
                                 <h2>Anthony Zheng</h2>
                                 <p>Earth is flat. Gravity was never proven.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 bio text-center" id="jalen">
-                            <div class="vertical-center">
-                                <h2>Jalen Boutte</h2>
-                                <p>I want to go home.</p>
                             </div>
                         </div>
                     </div>

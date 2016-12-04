@@ -24,7 +24,6 @@ public class DbLogic {
         return sneezes;
     }
 
-
     public static boolean validateCredentials(String user, String pass) {
         Connection con = database.connect();
         String sql = "SELECT * from users WHERE username=\"" + user + "\" AND password=\"" + pass + "\"";
@@ -52,7 +51,6 @@ public class DbLogic {
             return true;
     }
 
-
     /*
      * returns true when a user exists in the database
      */
@@ -65,13 +63,29 @@ public class DbLogic {
         try {
             users.next(); //get to our first entry
             result = users.getInt(1); //gets the result of the count(*) query
-        } catch( Exception e ) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         System.out.println("RESULT: " + result);
         //if there are no matching user names return false, else return true
         return (result == 0);
+    }
+
+    public static String getUserPass(String mail) {
+        Connection con = database.connect();
+        String sql = "SELECT password FROM users WHERE email=" + mail;
+        ResultSet pass = database.retrieve(con, sql);
+        String word = "";
+
+        try {
+            pass.next();
+            word = pass.getString(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return word;
     }
 
 }
