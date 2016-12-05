@@ -101,9 +101,8 @@ h3 {
     color: black;
 }
 
-#aboutSection,
-.aboutPart {
-    height: 100vh;
+#aboutSection {
+    background-color: white;
 }
 
 #aboutSection h2 {
@@ -124,6 +123,7 @@ h3 {
     color: black;
 }
 
+.aboutPart,
 .bio {
     height: 100vh;
 }
@@ -143,10 +143,6 @@ h3 {
 
 #anthony {
     background: url("../img/sneeze2.jpg") right bottom/25% no-repeat fixed;
-}
-
-#jalen {
-    background: url("../img/sneeze3.jpg") right bottom/25% no-repeat fixed;
 }
 
 #zachary {
@@ -206,6 +202,27 @@ h3 {
 
 .passform > form {
     margin-bottom: 20px;
+}
+
+.footer * {
+    color: white;
+}
+
+.footlinks {
+    background-color: #24292c;
+}
+
+dl {
+    margin-top: 20px;
+}
+
+.copyright {
+    background-color: #2d3337;
+}
+
+.copyright > div {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 @media screen and (max-width: 700px) {
