@@ -88,6 +88,8 @@ public class Access extends HttpServlet {
         String user = request.getParameter("user");
         String password = request.getParameter("pass");
 
+		ArrayList<Sneeze> sneezes = DBLogic.getSneezes();
+		
         if (type.equals("sign-in")) {
             if (DbLogic.validateCredentials(user, password)) {
                 response.getWriter().append("Validated login: " + user);

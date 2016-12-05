@@ -23,6 +23,25 @@ public class DbLogic {
         ResultSet sneezes = database.retrieve(con, sql);
         return sneezes;
     }
+	
+	public static ArrayList<Sneeze> getSneezes() {
+        Connection con = database.connect();
+        String sql = "SELECT user, msg FROM messages ORDER BY RAND() LIMIT 12";
+        ResultSet sneezeResults = database.retrieve(con, sql);
+		
+		ArrayList<Sneeze> sneezes = new ArrayList();
+		
+		try{
+			while(rs.next()){
+				sneezes.add(new Sneeze(sneezeResults.getString("user"), sneezeResults.getString("msg")));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		
+        return sneezes;
+    }
 
     public static boolean validateCredentials(String user, String pass) {
         Connection con = database.connect();
