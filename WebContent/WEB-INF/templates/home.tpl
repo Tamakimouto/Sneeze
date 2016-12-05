@@ -20,7 +20,7 @@
             <div class="row">
                 <#list sneezes as sneeze>
                 <div class="col-sm-3">
-                    <p>${sneeze.text}</p>
+                    <p>${sneeze.msg}</p>
                     <p>${sneeze.user}</p>
                 </div>
                 </#list>
