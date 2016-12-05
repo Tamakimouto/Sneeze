@@ -2,6 +2,7 @@ package reqres;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,17 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
+import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.MalformedTemplateNameException;
+import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.TemplateNotFoundException;
-
+import object.Sneeze;
 import db.DbLogic;
+
 
 /**
  * Servlet implementation class Access
  */
+
 @WebServlet("/Access")
 public class Access extends HttpServlet {
 
@@ -64,6 +69,32 @@ public class Access extends HttpServlet {
         }
     }
 
+	public static void loadSneezes(HttpServletRequest request, HttpServletResponse response){
+		
+		Template template = null;
+		
+		DefaultObjectWrapperBuilder df = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
+		SimpleHash root = new SimpleHash(df.build());
+		
+		//looks for the recently submitted movie
+		ArrayList<Sneeze> sneezes = DbLogic.getSneezes();
+		
+		root.put("sneezes", sneezes);
+		
+		
+		try{
+			String templateName = "home.tpl";//template to load
+			template = cfg.getTemplate(templateName);
+			response.setContentType("text/html");
+			Writer out = response.getWriter();
+			template.process(root, out);//run the template
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+    
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -77,7 +108,7 @@ public class Access extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        //response.getWriter();
+    	response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
     /**
@@ -88,13 +119,15 @@ public class Access extends HttpServlet {
         String user = request.getParameter("user");
         String password = request.getParameter("pass");
 
+		//ArrayList<Sneeze> sneezes = DbLogic.getSneezes();
+		
         if (type.equals("sign-in")) {
             if (DbLogic.validateCredentials(user, password)) {
-                response.getWriter().append("Validated login: " + user);
+                //response.getWriter().append("Validated login: " + user);
                 Cookie userCookie = new Cookie("sneezeUser", user);
                 userCookie.setMaxAge(60*60*24*365);
                 response.addCookie(userCookie);
-                // loadsneezes()
+                loadSneezes(request, response);
             } else {
                 response.getWriter().append("Login failed Validation: " + user);
                 // handle error validating credentials
@@ -102,12 +135,13 @@ public class Access extends HttpServlet {
         } else if (type.equals("sign-up")) {
             String email = request.getParameter("mail");
             if (DbLogic.createUser(user, password, email)) {
-                // loadsneezes();
-                response.getWriter().append("Added New User: " + user);
+                loadSneezes(request, response);
             } else {
                 response.getWriter().append("Failed to add user: " + user);
                 // handle error creating new user
             }
         }
+        //doGet(request, response);
     }
 }
+

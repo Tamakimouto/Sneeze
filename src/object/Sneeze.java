@@ -1,8 +1,8 @@
 package object;
 
 public class Sneeze {
-	private String user;
-	private String msg;
+	String user;
+	String msg;
 	
 	public Sneeze(String user, String msg) {
 		this.user = user;
