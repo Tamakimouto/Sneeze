@@ -92,16 +92,25 @@ public class Access extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("form");
-        if (action.equals("sneeze")) {
+        String action = request.getParameter("action");
+        if (action.equals("Sneeze")) {
             HttpSession session = request.getSession(true);
             int userId = (Integer) session.getAttribute("user_id");
             String msg = request.getParameter("msg");
-
-            DbLogic.createSneeze(userId, msg);
-            loadSneezes(response);
-        } else if (action.equals("refresh")) {
-            loadSneezes(response);
+            if (msg.equals("")) {
+                loadSneezes(response);
+            } else {
+                DbLogic.createSneeze(userId, msg);
+                loadSneezes(response);
+            }
+        } else if (action.equals("Ninja!")) {
+            String msg = request.getParameter("msg");
+            if (msg.equals("")) {
+                loadSneezes(response);
+            } else {
+                DbLogic.createSneeze(msg);
+                loadSneezes(response);
+            }
         }
     }
 
@@ -113,18 +122,16 @@ public class Access extends HttpServlet {
         String user = request.getParameter("user");
         String password = request.getParameter("pass");
 
-         String type = request.getParameter("form"); //sign-in or sign-up
-        String user = request.getParameter("user");
-        String password = request.getParameter("pass");
 
         if (type.equals("sign-in")) {
-			Cookie userCookie = new Cookie("sneezeUser", user);
+            Cookie userCookie = new Cookie("sneezeUser", user);
             userCookie.setMaxAge(60*60*24*365);
             response.addCookie(userCookie);
-        	loadSneezes(response);
+            loadSneezes(response);
         } else if (type.equals("sign-up")) {
             String email = request.getParameter("mail");
             if (DbLogic.createUser(user, password, email)) {
+                DbLogic.validateCredentials(user, password, request);
                 loadSneezes(response);
             } else {
                 response.getWriter().append("Failed to add user: " + user);

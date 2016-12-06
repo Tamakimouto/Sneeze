@@ -1,5 +1,150 @@
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
+
+* {
+    transition: all 1s;
+}
+
+body {
+    background: url(../img/blessl.jpg) left bottom no-repeat fixed, url(../img/bless2.jpg) right bottom no-repeat fixed;
+}
+
+.btn {
+    width: 45%;
+}
+
+.buttons {
+    padding-left: 0;
+}
+
+.head-strip {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    max-height: 60px;
+    z-index: 10;
+    background-color: white;
+}
+
+.head-strip img {
+    height: 60px;
+    width: auto;
+}
+
+.log-out {
+    font-size: 2em;
+    padding-right: 2vw;
+}
+
+.log-out:hover {
+    cursor: pointer;
+}
+
 .submission {
     position: absolute;
     top: 50%;
     width: 100%;
+    transform: translate(0, -50%);
+}
+
+.sneezeContainer {
+    text-align: center;
+}
+
+#sneezeApp {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+#sneezeApp p {
+    font-family: 'Poiret One', cursive;
+    font-size: 1.8em;
+}
+
+#sneezeApp h4 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.5em;
+}
+
+.navbar * {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.delay1 {
+    -vendor-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+.delay2 {
+    -vendor-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+
+.delay3 {
+    -vendor-animation-delay: 0.7s;
+    animation-delay: 0.7s;
+}
+
+.delay4 {
+    -vendor-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+.delay5 {
+    -vendor-animation-delay: 1.3s;
+    animation-delay: 1.3s;
+}
+
+.delay6 {
+    -vendor-animation-delay: 1.6s;
+    animation-delay: 1.6s;
+}
+
+.delay7 {
+    -vendor-animation-delay: 1.9s;
+    animation-delay: 1.9s;
+}
+
+.delay8 {
+    -vendor-animation-delay: 2.2s;
+    animation-delay: 2.2s;
+}
+
+.delay9 {
+    -vendor-animation-delay: 2.5s;
+    animation-delay: 2.5s;
+}
+
+.delay10 {
+    -vendor-animation-delay: 2.8s;
+    animation-delay: 2.8s;
+}
+
+.delay11 {
+    -vendor-animation-delay: 3.1s;
+    animation-delay: 3.1s;
+}
+
+.delay12 {
+    -vendor-animation-delay: 3.4s;
+    animation-delay: 3.4s;
+}
+
+@media screen and (max-width: 768px) {
+
+    body {
+        background: none;
+    }
+
+    .submission {
+        transform: translate(0, -35%);
+    }
+
+    .btn {
+        width: 90%;
+    }
+
+    #anon-btn {
+        display: none;
+    }
 }

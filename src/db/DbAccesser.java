@@ -6,10 +6,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+/**
+ * The class that accesses and makes the executions.
+ *
+ * @author      Anthony Zheng   <Anthony@fopen-dream.space>
+ * @author      Robin Guice
+ * @author      Zack Phan
+ * @package     db
+ */
 public class DbAccesser extends DbSettings {
 
+    /**
+     * DbAccessor
+     *
+     * Constructor Function
+     */
     public DbAccesser(){}
 
+    /**
+     * connect
+     *
+     * Creates and returns a database connection.
+     *
+     * @access public
+     * @return  Connection  con     SQL Connection.
+     */
     public Connection connect() {
         Connection con = null;
         try {
@@ -23,6 +45,14 @@ public class DbAccesser extends DbSettings {
         return con;
     }
 
+    /**
+     * disconnect
+     *
+     * Closes the SQL connection.
+     *
+     * @access  public
+     * @param   Connection  con     The SQL connection to be closed.
+     */
     public void disconnect(Connection con) {
         try {
             con.close();
@@ -31,7 +61,16 @@ public class DbAccesser extends DbSettings {
         }
     }
 
-    /* For getting things */
+    /**
+     * retrieve
+     *
+     * For getting things.
+     *
+     * @access  public
+     * @param   Connection  con     A valid sql connection.
+     * @param   String      query   The SQL Statement to be executed.
+     * @return  ResultSet   rset    A map of matched results.
+     */
     public ResultSet retrieve(Connection con, String query) {
         ResultSet rset = null;
         try {
@@ -44,7 +83,16 @@ public class DbAccesser extends DbSettings {
         }
     }
 
-    /* For Creating, Updating, and Deleting things */
+    /**
+     * update
+     *
+     * For creating, updating, and deleting things.
+     *
+     * @access  public
+     * @param   Connection  con         A valid sql connection.
+     * @param   String      query       The SQL Statement to be executed.
+     * @return  int         numUpdates  The total number of updates made.
+     */
     public int update(Connection con, String query) {
         int numUpdates = 0;
         try {
