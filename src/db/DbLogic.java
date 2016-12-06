@@ -9,19 +9,28 @@ import javax.servlet.http.HttpSession;
 
 import object.Sneeze;
 
-
+/**
+ * The logic of all the database related functions.
+ *
+ * @author  Anthony Zheng   <Anthony@fopen-dream.space>
+ * @author  Robin Guice
+ * @author  Zack Phan
+ * @package db
+ */
 public class DbLogic {
 
     static DbAccesser database = new DbAccesser();
-    /*
-     * Create SQL statements here and use the DbAccesser to process them.
+
+    /**
+     * createSneeze
      *
-     * Connection con = database.connect();
-     * ResultSet user = database.retrieve(con, ...);
+     * Creates a sneeze entry in the database given a user id and message.
      *
-     * And so on.
-     *
-     * I think it'd be easier to use if the functions in here were all static.
+     * @access  public
+     * @static
+     * @param   int     userId      The unique id corresponding the a user.
+     * @param   String  msg         User entered message.
+     * @return  boolean t/f         Whether or not the function succeeded.
      */
     public static boolean createSneeze(int userId, String msg) {
         Connection con = database.connect();
@@ -35,6 +44,20 @@ public class DbLogic {
             return true;
     }
 
+    /**
+     * createSneeze
+     *
+     * Creates a sneeze entry in the database given a message.
+     *
+     * Used for anonymous Sneezes as the userId is hard set to 1,
+     * being the Anonymous user account pre-registered in the 
+     * database.
+     *
+     * @access  public
+     * @static
+     * @param   String  msg         User entered message.
+     * @return  boolean t/f         Whether or not the function succeeded.
+     */
     public static boolean createSneeze(String msg) {
         Connection con = database.connect();
         String sql = "INSERT into messages(user_id, msg) VALUES (" + 1 + ", \"" + msg + "\");";
@@ -45,8 +68,17 @@ public class DbLogic {
             return false;
         else
             return true;
-    } 
+    }
 
+    /**
+     * getSneezeSet
+     *
+     * Returns a map of up to 12 Sneezes.
+     *
+     * @access  public
+     * @static
+     * @return  ResultSet   sneezes     The map of sneeze entries.
+     */
     public static ResultSet getSneezeSet() {
         Connection con = database.connect();
         String sql = "SELECT user_id, msg FROM messages ORDER BY RAND() LIMIT 12";
@@ -54,6 +86,17 @@ public class DbLogic {
         return sneezes;
     }
 
+    /**
+     * getSneezes
+     *
+     * Returns an arraylist of up to 12 Sneezes.
+     *
+     * Used for Freemarker template models.
+     *
+     * @access  public
+     * @static
+     * @return  ArrayList   sneezes     The map of sneeze entries.
+     */
     public static ArrayList<Sneeze> getSneezes() {
         ResultSet sneezeResults = getSneezeSet();
         ArrayList<Sneeze> sneezes = new ArrayList();
@@ -68,6 +111,21 @@ public class DbLogic {
         return sneezes;
     }
 
+    /**
+     * validateCredentials
+     *
+     * Determines if a given username matches a password in the database.
+     *
+     * Also sets up the user session and keeps track of the currently logged in
+     * user, to be accessed by sneeze creation functions.
+     *
+     * @access  public
+     * @static
+     * @param   String              user        The entered username.
+     * @param   String              pass        The entered password.
+     * @param   HttpServletRequest  request     Servlet Request.
+     * @return  boolean             t/f         Whether or not a user to pass record was found.
+     */
     public static boolean validateCredentials(String user, String pass, HttpServletRequest request) {
         Connection con = database.connect();
         String sql = "SELECT * from users WHERE username=\"" + user + "\" AND password=\"" + pass + "\"";
@@ -86,6 +144,18 @@ public class DbLogic {
         }
     }
 
+    /**
+     * createUser
+     *
+     * Handles the registration form and logs a new user in the database.
+     *
+     * @access  public
+     * @static
+     * @param   String  user    The user entered username.
+     * @param   String  pass    The user entered password.
+     * @param   String  email   The User's e-mail address.
+     * @return  boolean t/f     Whether or not the function succeeded.
+     */
     public static boolean createUser(String user, String pass, String email) {
         Connection con = database.connect();
         String sql = "INSERT INTO users (username, password, email) VALUES(\"" + user + "\",\"" + pass + "\",\"" + email + "\");";
@@ -98,6 +168,16 @@ public class DbLogic {
             return true;
     }
 
+    /**
+     * getUserById
+     *
+     * Returns a user name associated with a unique identifier.
+     *
+     * @access  public
+     * @static
+     * @param   int     id      The unique identifier.
+     * @return  String  user    The matched username.
+     */
     public static String getUserById(int id) {
         Connection con = database.connect();
         String sql = "SELECT username FROM users WHERE id=" + id;
@@ -110,12 +190,19 @@ public class DbLogic {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return user;
     }
 
-    /*
-     * returns true when a user exists in the database
+    /**
+     * userExists
+     *
+     * Returns true when a user exists in the database.
+     *
+     * @access  public
+     * @static
+     * @param   String  username    The username to search.
+     * @return  boolean t/f         Whether or not the user exists.
      */
     public static boolean userExists(String username) {
         Connection con = database.connect();
@@ -135,6 +222,18 @@ public class DbLogic {
         return (result == 0);
     }
 
+    /**
+     * getUserPass
+     *
+     * Returns the password for a given email.
+     *
+     * Used for password recovery.
+     *
+     * @access  public
+     * @static
+     * @param   String  mail    The User email.
+     * @return  String  word    The user's password.
+     */
     public static String getUserPass(String mail) {
         Connection con = database.connect();
         String sql = "SELECT password FROM users WHERE email=\"" + mail + "\";";
