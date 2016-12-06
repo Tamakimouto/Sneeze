@@ -5,5 +5,5 @@ function getCookieValue(a, b) {
 
 $(window).on("load", function() {
     var userName = getCookieValue('sneezeUser');
-    $("#user.signInField").value = userName;
+    $("#user .signInField").value = userName;
 });
