@@ -23,10 +23,10 @@ public class DbLogic {
      *
      * I think it'd be easier to use if the functions in here were all static.
      */
-    public static boolean createSneeze(int user, String msg) {
-    	Connection con = database.connect();
-    	String sql = "INSERT into messages(user_id,messages) VALUES (" + user + ",'" + msg +"');";
-    	int result = database.update(con, sql);
+    public static boolean createSneeze(int userId, String msg) {
+        Connection con = database.connect();
+        String sql = "INSERT into messages(user_id, messages) VALUES (" + userId + ", \"" + msg + "\");";
+        int result = database.update(con, sql);
 
         /* When result = 0, nothing is updated and createSneeze has failed */
         if (result == 0)
@@ -34,7 +34,7 @@ public class DbLogic {
         else
             return true;
     }
-    
+
     public static ResultSet getSneezeSet() {
         Connection con = database.connect();
         String sql = "SELECT user_id, msg FROM messages ORDER BY RAND() LIMIT 12";
@@ -65,8 +65,8 @@ public class DbLogic {
             if (!results.next())
                 return false; //no record found
             else {
-            	HttpSession session = request.getSession(true);
-            	session.setAttribute("user_id", results.getInt(1));
+                HttpSession session = request.getSession(true);
+                session.setAttribute("user_id", results.getInt(1));
                 return true; //record found
             }
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class DbLogic {
 
     public static String getUserPass(String mail) {
         Connection con = database.connect();
-        String sql = "SELECT password FROM users WHERE email=" + mail;
+        String sql = "SELECT password FROM users WHERE email=\"" + mail + "\";";
         ResultSet pass = database.retrieve(con, sql);
         String word = "";
 
