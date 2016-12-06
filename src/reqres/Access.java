@@ -118,6 +118,9 @@ public class Access extends HttpServlet {
         String password = request.getParameter("pass");
 
         if (type.equals("sign-in")) {
+			Cookie userCookie = new Cookie("sneezeUser", user);
+            userCookie.setMaxAge(60*60*24*365);
+            response.addCookie(userCookie);
         	loadSneezes(response);
         } else if (type.equals("sign-up")) {
             String email = request.getParameter("mail");
