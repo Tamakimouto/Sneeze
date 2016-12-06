@@ -2,6 +2,7 @@ package reqres;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,17 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
+import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.MalformedTemplateNameException;
+import freemarker.template.SimpleHash;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.TemplateNotFoundException;
 
+import object.Sneeze;
 import db.DbLogic;
+
 
 /**
  * Servlet implementation class Access
  */
+
 @WebServlet("/Access")
 public class Access extends HttpServlet {
 
@@ -44,7 +50,7 @@ public class Access extends HttpServlet {
      * This function runs the freemarker template depending on
      * the given parameters.
      */
-    public static void runTemplate(String template, Map<String, Object> tplModel, HttpServletResponse response) {
+    public static void runTemplate(String template, SimpleHash tplModel, HttpServletResponse response) {
         Template tpl;
         try {
             tpl = cfg.getTemplate(template);
@@ -64,12 +70,21 @@ public class Access extends HttpServlet {
         }
     }
 
+    public static void loadSneezes(HttpServletResponse response) {
+        DefaultObjectWrapperBuilder df = new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_25);
+        SimpleHash root = new SimpleHash(df.build());
+
+        ArrayList<Sneeze> sneezes = DbLogic.getSneezes();
+        root.put("sneezes", sneezes);
+        runTemplate("home.ftl", root, response);
+    }
+
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Access() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -77,7 +92,7 @@ public class Access extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        //response.getWriter();
+        response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
     /**
@@ -90,11 +105,11 @@ public class Access extends HttpServlet {
 
         if (type.equals("sign-in")) {
             if (DbLogic.validateCredentials(user, password)) {
-                response.getWriter().append("Validated login: " + user);
+                //response.getWriter().append("Validated login: " + user);
                 Cookie userCookie = new Cookie("sneezeUser", user);
                 userCookie.setMaxAge(60*60*24*365);
                 response.addCookie(userCookie);
-                // loadsneezes()
+                loadSneezes(response);
             } else {
                 response.getWriter().append("Login failed Validation: " + user);
                 // handle error validating credentials
@@ -102,8 +117,7 @@ public class Access extends HttpServlet {
         } else if (type.equals("sign-up")) {
             String email = request.getParameter("mail");
             if (DbLogic.createUser(user, password, email)) {
-                // loadsneezes();
-                response.getWriter().append("Added New User: " + user);
+                loadSneezes(response);
             } else {
                 response.getWriter().append("Failed to add user: " + user);
                 // handle error creating new user
@@ -111,3 +125,4 @@ public class Access extends HttpServlet {
         }
     }
 }
+

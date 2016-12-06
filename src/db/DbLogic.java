@@ -2,6 +2,10 @@ package db;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import object.Sneeze;
+
 
 public class DbLogic {
 
@@ -21,6 +25,20 @@ public class DbLogic {
         Connection con = database.connect();
         String sql = "SELECT user, msg FROM messages ORDER BY RAND() LIMIT 12";
         ResultSet sneezes = database.retrieve(con, sql);
+        return sneezes;
+    }
+
+    public static ArrayList<Sneeze> getSneezes() {
+        ResultSet sneezeResults = getSneezeSet();
+        ArrayList<Sneeze> sneezes = new ArrayList();
+
+        try {
+            while (sneezeResults.next())
+                sneezes.add(new Sneeze(sneezeResults.getString("user"), sneezeResults.getString("msg")));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
         return sneezes;
     }
 
