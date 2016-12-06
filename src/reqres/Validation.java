@@ -52,7 +52,6 @@ public class Validation extends HttpServlet {
 		try{
 		
 			if (DbLogic.validateCredentials(user, password)) {
-				System.out.println("ValidatorYAY");
 				out.write("valid");
 			}
 		}finally{
