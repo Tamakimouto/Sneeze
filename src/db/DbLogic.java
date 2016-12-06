@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import object.Sneeze;
 
 
@@ -42,7 +45,7 @@ public class DbLogic {
         return sneezes;
     }
 
-    public static boolean validateCredentials(String user, String pass) {
+    public static boolean validateCredentials(String user, String pass, HttpServletRequest request) {
         Connection con = database.connect();
         String sql = "SELECT * from users WHERE username=\"" + user + "\" AND password=\"" + pass + "\"";
         ResultSet results = database.retrieve(con, sql);
@@ -50,8 +53,11 @@ public class DbLogic {
         try {
             if (!results.next())
                 return false; //no record found
-            else
+            else {
+            	HttpSession session = request.getSession(true);
+            	session.setAttribute("user_id", results.getInt(1));
                 return true; //record found
+            }
         } catch (Exception e) {
             return false; //error -> no record found
         }
