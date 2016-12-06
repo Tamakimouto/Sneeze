@@ -23,7 +23,7 @@ public class DbLogic {
 
     public static ResultSet getSneezeSet() {
         Connection con = database.connect();
-        String sql = "SELECT user, msg FROM messages ORDER BY RAND() LIMIT 12";
+        String sql = "SELECT user_id, msg FROM messages ORDER BY RAND() LIMIT 12";
         ResultSet sneezes = database.retrieve(con, sql);
         return sneezes;
     }
