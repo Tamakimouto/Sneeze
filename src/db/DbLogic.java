@@ -20,7 +20,18 @@ public class DbLogic {
      *
      * I think it'd be easier to use if the functions in here were all static.
      */
+    public static boolean createSneeze(int user, String msg) {
+    	Connection con = database.connect();
+    	String sql = "INSERT into messages(user_id,messages) VALUES (" + user + ",'" + msg +"');";
+    	int result = database.update(con, sql);
 
+        /* When result = 0, nothing is updated and createSneeze has failed */
+        if (result == 0)
+            return false;
+        else
+            return true;
+    }
+    
     public static ResultSet getSneezeSet() {
         Connection con = database.connect();
         String sql = "SELECT user_id, msg FROM messages ORDER BY RAND() LIMIT 12";
