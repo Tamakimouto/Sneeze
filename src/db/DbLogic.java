@@ -206,7 +206,7 @@ public class DbLogic {
      */
     public static boolean userExists(String username) {
         Connection con = database.connect();
-        String sql  = "SELECT count(*) FROM users WHERE users.username=" + username;
+        String sql  = "SELECT count(*) FROM users WHERE users.username=\"" + username + "\";";
         ResultSet users = database.retrieve(con, sql);
         int result = 0;
 
@@ -217,9 +217,8 @@ public class DbLogic {
             e.printStackTrace();
         }
 
-        System.out.println("RESULT: " + result);
         //if there are no matching user names return false, else return true
-        return (result == 0);
+        return result == 0 ? false : true;
     }
 
     /**

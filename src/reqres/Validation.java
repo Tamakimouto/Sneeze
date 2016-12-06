@@ -48,7 +48,7 @@ public class Validation extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try{
-            if (DbLogic.validateCredentials(user, password)) {
+            if (DbLogic.validateCredentials(user, password, request)) {
                 out.write("valid");
             }
         } finally {

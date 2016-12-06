@@ -122,9 +122,6 @@ public class Access extends HttpServlet {
         String user = request.getParameter("user");
         String password = request.getParameter("pass");
 
-        String type = request.getParameter("form"); //sign-in or sign-up
-        String user = request.getParameter("user");
-        String password = request.getParameter("pass");
 
         if (type.equals("sign-in")) {
             Cookie userCookie = new Cookie("sneezeUser", user);
