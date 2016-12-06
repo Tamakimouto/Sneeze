@@ -25,7 +25,7 @@ public class DbLogic {
      */
     public static boolean createSneeze(int userId, String msg) {
         Connection con = database.connect();
-        String sql = "INSERT into messages(user_id, messages) VALUES (" + userId + ", \"" + msg + "\");";
+        String sql = "INSERT into messages(user_id, msg) VALUES (" + userId + ", \"" + msg + "\");";
         int result = database.update(con, sql);
 
         /* When result = 0, nothing is updated and createSneeze has failed */
@@ -34,6 +34,18 @@ public class DbLogic {
         else
             return true;
     }
+
+    public static boolean createSneeze(String msg) {
+        Connection con = database.connect();
+        String sql = "INSERT into messages(user_id, msg) VALUES (" + 1 + ", \"" + msg + "\");";
+        int result = database.update(con, sql);
+
+        /* When result = 0, nothing is updated and createSneeze has failed */
+        if (result == 0)
+            return false;
+        else
+            return true;
+    } 
 
     public static ResultSet getSneezeSet() {
         Connection con = database.connect();
@@ -48,7 +60,7 @@ public class DbLogic {
 
         try {
             while (sneezeResults.next())
-                sneezes.add(new Sneeze(sneezeResults.getString("user"), sneezeResults.getString("msg")));
+                sneezes.add(new Sneeze(getUserById(sneezeResults.getInt("user_id")), sneezeResults.getString("msg")));
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -84,6 +96,22 @@ public class DbLogic {
             return false;
         else
             return true;
+    }
+
+    public static String getUserById(int id) {
+        Connection con = database.connect();
+        String sql = "SELECT username FROM users WHERE id=" + id;
+        ResultSet result = database.retrieve(con, sql);
+        String user = null;
+        try {
+            result.next();
+            user = result.getString(1);
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return user;
     }
 
     /*
