@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
@@ -91,8 +92,17 @@ public class Access extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+        String action = request.getParameter("form");
+        if (action.equals("sneeze")) {
+            HttpSession session = request.getSession(true);
+            int userId = (Integer) session.getAttribute("user_id");
+            String msg = request.getParameter("msg");
+
+            DbLogic.createSneeze(userId, msg);
+            loadSneezes(response);
+        } else if (action.equals("refresh")) {
+            loadSneezes(response);
+        }
     }
 
     /**
@@ -104,8 +114,7 @@ public class Access extends HttpServlet {
         String password = request.getParameter("pass");
 
         if (type.equals("sign-in")) {
-            if (DbLogic.validateCredentials(user, password)) {
-                //response.getWriter().append("Validated login: " + user);
+            if (DbLogic.validateCredentials(user, password, request)) {
                 Cookie userCookie = new Cookie("sneezeUser", user);
                 userCookie.setMaxAge(60*60*24*365);
                 response.addCookie(userCookie);
