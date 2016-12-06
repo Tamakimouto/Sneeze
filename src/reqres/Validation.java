@@ -47,8 +47,6 @@ public class Validation extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
-		System.out.println(user);
-		System.out.println(password);
 		try{
 		
 			if (DbLogic.validateCredentials(user, password)) {
