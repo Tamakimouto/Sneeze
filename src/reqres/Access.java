@@ -76,7 +76,7 @@ public class Access extends HttpServlet {
 
         ArrayList<Sneeze> sneezes = DbLogic.getSneezes();
         root.put("sneezes", sneezes);
-        runTemplate("home.tpl", root, response);
+        runTemplate("home.ftl", root, response);
     }
 
 
