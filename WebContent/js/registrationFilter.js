@@ -2,7 +2,7 @@ $(function() {
     $("#user.signUpField").on('change', function() {
         var username = $(this).val();
         if (username.length > 5) {
-            $(".status").html("Checking Availibility...");
+            $(".status").html("Checking Availability...");
             $.ajax({
                 type: "POST",
                 url: "Availability",
